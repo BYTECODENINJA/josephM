@@ -6,6 +6,8 @@ const REFERENCE_IMAGES = {
   Gaming: "/Gaming.png",
   Prologue: "/K-Tech.png",
   Portfilio: "/WindowsPortfolio.png",
+  RealEstate: "/RealEstate.png",
+  Fintech: "/Fintech.png",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
 } as const;
@@ -53,26 +55,50 @@ const projects = [
   {
     index: "04",
     category: "Backend" as ProjectCategory,
-    focus: "Fintech / APIs",
-    title: "The\nLedger",
-    description: "A wealth interface that turns complex financial behavior into a daily ritual.",
+    focus: "E-Commerce / UI",
+    title: "Golden\nCode",
+    description: "An elegant e-commerce platform for high-end fashion and lifestyle.",
     image: REFERENCE_IMAGES.goldenCode,
     accent: "gold",
-    tags: ["TypeScript", "Node.js", "Postgres"],
-    github: "https://github.com/josephmulwa/the-ledger",
-    livePreview: undefined,
+    tags: ["Next.js", "Tailwind", "Stripe"],
+    github: "https://github.com/BYTECODENINJA/goldencode",
+    livePreview: "https://goldencode.vercel.app",
   },
   {
     index: "05",
     category: "Fullstack" as ProjectCategory,
-    focus: "Culture / Editorial",
-    title: "Memento\nMori",
-    description: "A digital archive for the questions that outlive their answers.",
-    image: REFERENCE_IMAGES.memento,
+    focus: "RealEstate / APIs",
+    title: "Property\nFinder",
+    description: "A rentals searching website for kenyan property owners and seekers.",
+    image: REFERENCE_IMAGES.RealEstate,
+    accent: "gold",
+    tags: ["TypeScript", "Convex", "React", "GSAP"],
+    github: "",
+    livePreview: "https://www.rentosearch.co.ke",
+  },
+  {
+    index: "06",
+    category: "Fullstack" as ProjectCategory,
+    focus: "Fintech / Banking",
+    title: "Expense\nTracker",
+    description: "A crud application for managing expenses and tracking savings.",
+    image: REFERENCE_IMAGES.Fintech,
     accent: "violet",
-    tags: ["Next.js", "Motion", "Editorial"],
-    github: "https://github.com/josephmulwa/memento-mori",
-    livePreview: "https://memento-mori.vercel.app",
+    tags: ["Next.js", "MongoDb", "Gen AI", "TypeScript", "React"],
+    github: "https://github.com/BYTECODENINJA/moneymate",
+    livePreview: "https://moneymate-two.vercel.app",
+  },
+  {
+    index: "07",
+    category: "Backend" as ProjectCategory,
+    focus: "Architecture / APIs",
+    title: "Ledger\nEngine",
+    description: "High-performance financial ledger system built for scale.",
+    image: REFERENCE_IMAGES.memento,
+    accent: "blue",
+    tags: ["Node.js", "PostgreSQL", "Redis"],
+    github: "https://github.com/BYTECODENINJA/ledger-engine",
+    livePreview: "",
   },
 ] as const;
 
@@ -151,9 +177,19 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
         <div className="project-carousel-container">
           {visibleProjects.length > 0 && (
             <>
-              {visibleProjects.length > 1 && renderProjectCard(getProjectAt(-1), "prev")}
+              {visibleProjects.length > 1 ? (
+                renderProjectCard(getProjectAt(-1), "prev")
+              ) : (
+                <div className="project-carousel-item project-carousel-item--spacer" />
+              )}
+              
               {renderProjectCard(visibleProjects[currentIndex], "center")}
-              {visibleProjects.length > 1 && renderProjectCard(getProjectAt(1), "next")}
+              
+              {visibleProjects.length > 1 ? (
+                renderProjectCard(getProjectAt(1), "next")
+              ) : (
+                <div className="project-carousel-item project-carousel-item--spacer" />
+              )}
             </>
           )}
         </div>

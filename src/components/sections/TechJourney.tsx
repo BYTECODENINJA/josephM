@@ -1,4 +1,3 @@
-import React from "react";
 import { SectionEyebrow } from "../SectionEyebrow";
 
 const techJourney = [
@@ -11,7 +10,25 @@ const techJourney = [
 export function TechJourney() {
   return (
     <section className="tech-journey section" id="tech-journey">
-      <div className="section-frame"><SectionEyebrow number="04" children="TECH JOURNEY" /><div className="section-heading reveal reveal--up" data-reveal><h2>From syntax<br /><em>to systems.</em></h2><p>A living route through the tools, instincts, and questions that shape how I build.</p></div><div className="journey-rail parallax-target" data-parallax data-parallax-x="-12" data-parallax-y="18">{techJourney.map((step) => <article className="journey-step reveal reveal--up" data-reveal key={step.number}><div className="journey-step__number">{step.number}</div><div className="journey-step__signal"><span /></div><div className="journey-step__body"><span className="micro-label">{step.era}</span><h3>{step.title}</h3><p>{step.text}</p></div></article>)}</div></div>
+      <div className="section-frame">
+        <SectionEyebrow number="04" children="TECH JOURNEY" /><
+        div className="section-heading reveal reveal--up" data-reveal>
+        <h2>From syntax<br /><em>to systems.</em></h2>
+        <p>A living route through the tools, instincts, and questions that shape how I build.</p>
+      </div>
+        <div className="journey-rail parallax-target" data-parallax data-parallax-x="-12" data-parallax-y="18">
+          {techJourney.map((step) =>
+            <article className="journey-step reveal reveal--up" data-reveal key={step.number}>
+              <div className="journey-step__number">{step.number}</div>
+              <div className="journey-step__signal"><span /></div>
+              <div className="journey-step__body">
+                <span className="micro-label">{step.era}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </article>
+          )}</div>
+      </div>
     </section>
   );
 }

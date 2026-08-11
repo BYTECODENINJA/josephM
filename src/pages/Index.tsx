@@ -130,31 +130,80 @@ const Index = () => {
     }
   };
   
-  const updateContact = (key: keyof ContactForm, value: string) => setContact((current) => ({ ...current, [key]: value }));
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setContactSent(true); };
+  const updateContact = (key: keyof ContactForm, value: string) =>
+    setContact((current) => ({
+      ...current, [key]: value }));
+  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); setContactSent(true); };
 
   return (
     <main className="site-shell">
       <div className={introComplete ? "intro-screen is-complete" : "intro-screen"} aria-hidden={introComplete}>
         <div className="intro-screen__grid" />
         <div className="intro-screen__stars"><Constellation /></div>
-        <div className="intro-eagle"><span className="intro-eagle__wing intro-eagle__wing--left" /><span className="intro-eagle__body">◈</span><span className="intro-eagle__wing intro-eagle__wing--right" /></div>
-        <div className="intro-scroll"><span>JOSEPH MULWA</span><small>ARCHITECT OF DIGITAL EXPERIENCES</small></div>
-        <div className="intro-screen__footer"><span>THE DIGITAL ARCHITECT</span><span>INITIALIZING / {constellation} SIGNALS</span></div>
+        <div className="intro-eagle">
+          <span className="intro-eagle__wing intro-eagle__wing--left" />
+          <span className="intro-eagle__body">◈</span>
+          <span className="intro-eagle__wing intro-eagle__wing--right" />
+        </div>
+        <div className="intro-scroll"><span>JOSEPH MULWA</span>
+          <small>ARCHITECT OF DIGITAL EXPERIENCES</small>
+        </div>
+        <div className="intro-screen__footer">
+          <span>THE DIGITAL ARCHITECT</span>
+          <span>INITIALIZING / {constellation} SIGNALS</span>
+        </div>
       </div>
 
-      <div className="progress-rail" aria-hidden="true"><span /></div>
+      <div className="progress-rail" aria-hidden="true">
+        <span />
+      </div>
       <div className="noise" aria-hidden="true" />
       <div className="site-shell__glow site-shell__glow--left" aria-hidden="true" />
       <div className="site-shell__glow site-shell__glow--right" aria-hidden="true" />
 
       <header className="site-header">
-        <button className="brand-lockup" type="button" onClick={() => scrollTo("top")} aria-label="Back to top"><AppMark /><span><strong>JOSEPH MULWA</strong><small>THE DIGITAL ARCHITECT</small></span></button>
-        <nav className="desktop-nav" aria-label="Primary navigation">{sectionLinks.map((link, index) => <button key={link.id} type="button" onClick={() => scrollTo(link.id)}><span>0{index + 1}</span>{link.label}</button>)}</nav>
-        <button className="header-cta" type="button" onClick={() => setHireOpen(true)}>Hire me <ArrowUpRight size={15} /></button>
-        <button className="mobile-menu-toggle" type="button" onClick={() => setMobileMenu((open) => !open)} aria-label="Toggle navigation">{mobileMenu ? <X size={20} /> : <Menu size={20} />}</button>
+        <button className="brand-lockup" type="button" onClick={() => scrollTo("top")}
+                aria-label="Back to top">
+          <AppMark />
+          <span>
+            <strong>JOSEPH MULWA</strong>
+            <small>THE DIGITAL ARCHITECT</small>
+          </span>
+        </button>
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {sectionLinks.map(
+            (link, index) => <
+              button key={link.id} type="button" onClick={() => scrollTo(link.id)}>
+              <span>0{index + 1}</span>{link.label}
+            </button>
+          )}
+        </nav>
+        <button className="header-cta" type="button" onClick={() => setHireOpen(true)}>
+          Hire me
+          <ArrowUpRight size={15} />
+        </button>
+        <button className="mobile-menu-toggle" type="button" onClick={() =>
+          setMobileMenu((open) => !open)} aria-label="Toggle navigation">
+          {mobileMenu ?
+            <X size={20} /> : <Menu size={20} />}
+        </button>
       </header>
-      {mobileMenu && <nav className="mobile-nav" aria-label="Mobile navigation">{sectionLinks.map((link, index) => <button key={link.id} type="button" onClick={() => scrollTo(link.id)}><span>0{index + 1}</span>{link.label}<ArrowUpRight size={15} /></button>)}<button type="button" className="mobile-nav__hire" onClick={() => { setMobileMenu(false); setHireOpen(true); }}>Start a conversation <Sparkles size={15} /></button></nav>}
+      {mobileMenu &&
+        <nav className="mobile-nav" aria-label="Mobile navigation">
+          {sectionLinks.map((link, index) =>
+            <button key={link.id} type="button" onClick={() => scrollTo(link.id)}>
+              <span>0{index + 1}</span>
+              {link.label}<ArrowUpRight size={15} />
+            </button>
+          )}
+          <button type="button" className="mobile-nav__hire" onClick={() => {
+            setMobileMenu(false); setHireOpen(true);
+          }}>
+            Start a conversation
+            <Sparkles size={15} />
+          </button>
+        </nav>}
 
       <Hero scrollTo={scrollTo} setResumeOpen={setResumeOpen} downloadResume={downloadResume} />
       <Manifesto scrollTo={scrollTo} />
@@ -167,7 +216,11 @@ const Index = () => {
 
       <Footer scrollTo={scrollTo} />
 
-      <button className="floating-hire" type="button" onClick={() => setHireOpen(true)}><span className="floating-hire__pulse" /><span>Hire me</span><ArrowUpRight size={16} /></button>
+      <button className="floating-hire" type="button" onClick={() =>
+        setHireOpen(true)}><span className="floating-hire__pulse" />
+        <span>Hire me</span>
+        <ArrowUpRight size={16} />
+      </button>
       {resumeOpen && <ResumeModal onClose={() => setResumeOpen(false)} />}
       {hireOpen && <HireModal onClose={() => setHireOpen(false)} />}
     </main>

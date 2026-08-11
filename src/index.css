@@ -80,7 +80,7 @@
 .section--light .section-eyebrow, .section--marble .section-eyebrow { color: var(--bronze); }
 .section-eyebrow__number { color: currentColor; }
 .section-eyebrow__line { width: 54px; height: 1px; background: currentColor; opacity: .65; }
-.micro-label { display: inline-block; color: var(--muted); font: 11px 'DM Mono', monospace; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; }
+.micro-label { display: inline-block; color: var(--gold); font: 11px 'DM Mono', monospace; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; }
 .section--light .micro-label, .section--marble .micro-label { color: var(--muted-dark); }
 .reveal { opacity: 0; transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 1000ms cubic-bezier(.2,.8,.2,1); }
 .reveal--up { transform: translateY(28px); }
@@ -243,7 +243,7 @@
 .timeline-entry:nth-child(even) .timeline-entry__year { grid-column: 3; grid-row: 1; text-align: left; }
 .timeline-entry:nth-child(even) .timeline-entry__marker { grid-column: 2; grid-row: 1; }
 .timeline-entry__content h3 { margin: 13px 0 13px; font: 500 27px 'Playfair Display', serif; letter-spacing: -.04em; }
-.timeline-entry__content p { max-width: 330px; margin: 0 0 18px; color: #66626a; font-size: 15px; line-height: 1.75; }
+.timeline-entry__content p { max-width: 330px; margin: 0 0 18px; color: #FFFFFF; font-size: 18px; line-height: 1.75; }
 .timeline-entry:nth-child(even) p { margin-left: auto; }
 .timeline-entry__tags { display: flex; gap: 6px; }
 .timeline-entry:nth-child(even) .timeline-entry__tags { justify-content: flex-end; }
@@ -298,6 +298,7 @@
 .project-carousel-item--next:hover { opacity: 0.8; filter: blur(0) grayscale(0.2); }
 .project-carousel-item--center { opacity: 1; transform: scale(1); z-index: 2; pointer-events: none; }
 .project-carousel-item--center > * { pointer-events: auto; }
+.project-carousel-item--spacer { pointer-events: none; visibility: hidden; }
 .philosophy__image { position: relative; grid-column: 1 / -1; height: 260px; margin-top: 4rem; overflow: hidden; border: 1px solid var(--line-dark); }
 .philosophy__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; opacity: .5; filter: grayscale(.45) contrast(1.1); transition: opacity 500ms ease, transform 1s cubic-bezier(.2,.8,.2,1); }
 .philosophy__image:hover img { opacity: .7; transform: scale(1.04); }
@@ -508,6 +509,7 @@
     height: 150px; 
     overflow: hidden;
   }
+  .project-carousel-item--spacer { display: none; }
   .project-carousel-item--center { order: 0; min-height: 450px; }
   .project-carousel-item--prev { order: -1; }
   .project-carousel-item--next { order: 1; }
