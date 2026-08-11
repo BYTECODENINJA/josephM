@@ -16,7 +16,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
         <div className="resume-paper__rule" />
         <div className="resume-paper__footer"><span>Based in Nairobi, Kenya</span><span>Available for select collaborations</span></div>
       </div>
-      <div className="modal-actions"><a className="button button--gold" href="mailto:joseph@example.com?subject=Resume request" onClick={onClose}>Request a conversation <ArrowUpRight size={16} /></a><button className="button button--quiet" type="button" onClick={onClose}>Close</button></div>
+      <div className="modal-actions"><a className="button button--gold" href="mailto:josephmulwa8055@gmail.com.com?subject=Resume request" onClick={onClose}>Request a conversation <ArrowUpRight size={16} /></a><button className="button button--quiet" type="button" onClick={onClose}>Close</button></div>
     </ModalShell>
   );
 }

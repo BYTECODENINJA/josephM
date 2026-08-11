@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowDown, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { AppMark } from "./AppMark";
 
@@ -12,7 +11,7 @@ export function Footer({ scrollTo }: FooterProps) {
       <div className="site-footer__top">
         <div className="footer-brand">
           <AppMark />
-          <span><strong>JOSEPH MULWA</strong><small>THE DIGITAL TEMPLE</small></span>
+          <span><strong>JOSEPH MULWA</strong><small>THE DIGITAL ARCHITECT</small></span>
         </div>
         <p>Useful things for<br /><em>the long now.</em></p>
         <button type="button" className="footer-up" onClick={() => scrollTo("top")} aria-label="Back to top">

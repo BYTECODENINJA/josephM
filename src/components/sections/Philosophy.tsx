@@ -1,5 +1,13 @@
-import React from "react";
-import { Quote, ArrowUpRight, Bot, BookOpen, Brain, Music2, Compass, Orbit } from "lucide-react";
+import {
+  Quote,
+  ArrowUpRight,
+  Bot,
+  BookOpen,
+  Music2,
+  Compass,
+  Orbit,
+  ShieldCheck,
+} from "lucide-react";
 import { SectionEyebrow } from "../SectionEyebrow";
 
 const REFERENCE_IMAGES = {
@@ -10,7 +18,7 @@ const REFERENCE_IMAGES = {
 const interests = [
   { title: "Artificial intelligence", principle: "Amor fati — work with what is", icon: Bot },
   { title: "Philosophy", principle: "The obstacle becomes the way", icon: BookOpen },
-  { title: "Chess", principle: "See the board before the move", icon: Brain },
+  { title: "Cybersecurity", principle: "Securing applications, APIs, and infrastructure against modern threats.Understanding security best practices, ethical hacking, and building secure applications from the ground up.", icon: ShieldCheck },
   { title: "Music & sound", principle: "Rhythm makes a system memorable", icon: Music2 },
   { title: "Architecture", principle: "Form follows the human need", icon: Compass },
   { title: "Game worlds", principle: "Play is a serious way of knowing", icon: Orbit },

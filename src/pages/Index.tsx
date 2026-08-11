@@ -1,8 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import {
-  ArrowDown,
   ArrowUpRight,
-  Download,
   Menu,
   Sparkles,
   X,
@@ -95,7 +93,7 @@ function useCinematicSignals() {
 }
 
 const downloadResume = () => {
-  const pdf = `%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n5 0 obj\n<< /Length 212 >>\nstream\nBT\n/F1 22 Tf\n72 700 Td\n(Joseph Mulwa) Tj\n/F1 12 Tf\n0 -28 Td\n(Full-stack developer | Architect of digital experiences) Tj\n0 -42 Td\n(React, TypeScript, Node.js, product systems, AI interfaces) Tj\n0 -24 Td\n(Nairobi, Kenya | joseph@example.com) Tj\nET\nendstream\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF`;
+  const pdf = `%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n5 0 obj\n<< /Length 212 >>\nstream\nBT\n/F1 22 Tf\n72 700 Td\n(Joseph Mulwa) Tj\n/F1 12 Tf\n0 -28 Td\n(Full-stack developer | Architect of digital experiences) Tj\n0 -42 Td\n(React, TypeScript, Node.js, product systems, AI interfaces) Tj\n0 -24 Td\n(Nairobi, Kenya | josephmulwa8055@gmail.com) Tj\nET\nendstream\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF`;
   const blob = new Blob([pdf], { type: "application/pdf" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -151,7 +149,7 @@ const Index = () => {
       <div className="site-shell__glow site-shell__glow--right" aria-hidden="true" />
 
       <header className="site-header">
-        <button className="brand-lockup text-2xl" type="button" onClick={() => scrollTo("top")} aria-label="Back to top"><AppMark /><span><strong>JOSEPH MULWA</strong><small>THE DIGITAL ARCHITECT</small></span></button>
+        <button className="brand-lockup" type="button" onClick={() => scrollTo("top")} aria-label="Back to top"><AppMark /><span><strong>JOSEPH MULWA</strong><small>THE DIGITAL ARCHITECT</small></span></button>
         <nav className="desktop-nav" aria-label="Primary navigation">{sectionLinks.map((link, index) => <button key={link.id} type="button" onClick={() => scrollTo(link.id)}><span>0{index + 1}</span>{link.label}</button>)}</nav>
         <button className="header-cta" type="button" onClick={() => setHireOpen(true)}>Hire me <ArrowUpRight size={15} /></button>
         <button className="mobile-menu-toggle" type="button" onClick={() => setMobileMenu((open) => !open)} aria-label="Toggle navigation">{mobileMenu ? <X size={20} /> : <Menu size={20} />}</button>
