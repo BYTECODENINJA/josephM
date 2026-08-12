@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Github, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SectionEyebrow } from "../SectionEyebrow";
 
 const REFERENCE_IMAGES = {
@@ -8,12 +9,12 @@ const REFERENCE_IMAGES = {
   Portfilio: "/WindowsPortfolio.png",
   RealEstate: "/RealEstate.png",
   Fintech: "/Fintech.png",
+  VibeCodingToolkit: "/AIToolKit.jpeg",
+  CustomMcp: "/custommcp.jpeg",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
-  toolsDummy: "/tools-placeholder.jpg" // Added fallback image parameter for the Tools category
 } as const;
 
-// 1. Updated categories schema to include your requested "Tools" option
 type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
 const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
 
@@ -105,15 +106,27 @@ const projects = [
   {
     index: "08",
     category: "Tools" as ProjectCategory,
-    focus: "Developer Experience",
-    title: "CLI\nToolkit",
-    description: "A collection of automated script tools optimizing localized builds.",
-    image: REFERENCE_IMAGES.toolsDummy,
+    focus: "Spec driven development",
+    title: "Vibe Coding\nToolkit",
+    description: "A collection of md files explaining how to setup AI prompts before asking AI to write code.",
+    image: REFERENCE_IMAGES.VibeCodingToolkit,
     accent: "blue",
-    tags: ["Rust", "Shell", "Docker"],
+    tags: ["Prompt Eng", "Agentic", "Specs", "AI Code"],
     github: "https://github.com",
     livePreview: "",
   },
+  {
+    index: "09",
+    category: "Tools" as ProjectCategory,
+    focus: "AI / MCPs",
+    title: "Custom MCP\nTool",
+    description: "Just a custom tryout while trying to understand how MCPs work.",
+    image: REFERENCE_IMAGES.CustomMcp,
+    accent: "gold",
+    tags: ["Prompt Eng", "Agentic", "Specs", "AI Code"],
+    github: "https://github.com",
+    livePreview: "",
+  }
 ] as const;
 
 interface WorkProps {
@@ -122,14 +135,21 @@ interface WorkProps {
 }
 
 export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkProps) {
-  // Extract only the matching subset array dynamically
   const visibleProjects = projects.filter((project) => project.category === activeProjectCategory);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Automatically reset the internal slide view pointer back to 0 when swapping categories
+  const [tabDirection, setTabDirection] = useState<"left" | "right">("right");
+  const [previousCategoryIndex, setPreviousCategoryIndex] = useState(0);
+
   useEffect(() => {
     setCurrentIndex(0);
   }, [activeProjectCategory]);
+
+  const handleCategoryChange = (newCategory: ProjectCategory, nextIndex: number) => {
+    setTabDirection(nextIndex > previousCategoryIndex ? "right" : "left");
+    setPreviousCategoryIndex(nextIndex);
+    setActiveProjectCategory(newCategory);
+  };
 
   const nextProject = () => {
     if (visibleProjects.length === 0) return;
@@ -141,7 +161,6 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
     setCurrentIndex((prev) => (prev - 1 + visibleProjects.length) % visibleProjects.length);
   };
 
-  // Safe cyclic layout parsing to handle endless looping mechanics over smaller lengths
   const getProjectAt = (offset: number) => {
     if (visibleProjects.length === 0) return null;
     const index = (currentIndex + offset + visibleProjects.length) % visibleProjects.length;
@@ -149,34 +168,84 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
   };
 
   const renderProjectCard = (project: typeof projects[number], position: "center" | "prev" | "next") => (
-    <article
+    <motion.article
+      whileHover="hoverState"
+      initial="restState"
+      animate="restState"
       className={`project-card project-card--${project.accent} reveal reveal--up is-visible project-carousel-item project-carousel-item--${position}`}
       key={`${activeProjectCategory}-${project.index}-${position}`}
-      // Clicking left shifts previous into focus, clicking right brings the next item forward
       onClick={position === "prev" ? prevProject : position === "next" ? nextProject : undefined}
     >
-      <div className="project-card__image"><img src={project.image} alt={project.title} /></div>
-      <div className="project-card__veil" />
-      <div className="project-card__top"><span>{project.focus}</span><ExternalLink size={14} /></div>
-      <div className="project-card__body">
-        <span className="project-category__index">{project.index}</span>
-        <h3>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3>
-        <p>{project.description}</p>
-        <div className="project-card__tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+      <div className="project-card__image" style={{ background: "#0a0a0f" }}>
+        <motion.img
+          src={project.image}
+          alt={project.title}
+          variants={{
+            restState: { opacity: 0.35, filter: "grayscale(20%) contrast(115%)" },
+            hoverState: { opacity: 1.0, filter: "grayscale(0%) contrast(105%)" }
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        />
       </div>
-      <div className="project-card__bottom">
+
+      <div
+        className="project-card__veil"
+        style={{
+          background: "linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.45) 45%, rgba(10,10,15,0.98) 100%)",
+          zIndex: 0
+        }}
+      />
+
+      <div className="project-card__top" style={{ position: "relative", zIndex: 1 }}>
+        <span>{project.focus}</span>
+        <ExternalLink size={14} />
+      </div>
+
+      <div className="project-card__body" style={{ position: "relative", zIndex: 1 }}>
+        <span className="project-category__index">{project.index}</span>
+        <h3 style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
+          {project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}
+        </h3>
+        <p style={{ color: "rgba(246, 241, 232, 0.92)", textShadow: "0 1px 6px rgba(0,0,0,0.95)" }}>
+          {project.description}
+        </p>
+        <div className="project-card__tags">
+          {project.tags.map((tag) => (
+            <span key={tag} style={{ background: "rgba(10,10,15,0.7)", backdropFilter: "blur(4px)" }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="project-card__bottom" style={{ position: "relative", zIndex: 1 }}>
         <div className="project-card__links">
           {project.github && <a href={project.github} className="project-card__link" target="_blank" rel="noreferrer"><Github size={14} /> GitHub</a>}
           {project.livePreview && <a href={project.livePreview} className="project-card__link" target="_blank" rel="noreferrer"><ExternalLink size={14} /> Live</a>}
         </div>
         <span>{project.category}</span>
       </div>
-    </article>
+    </motion.article>
   );
 
   const prevProjectData = getProjectAt(-1);
   const centerProjectData = getProjectAt(0);
   const nextProjectData = getProjectAt(1);
+
+  const slideVariants = {
+    enter: (direction: "left" | "right") => ({
+      x: direction === "right" ? 50 : -50,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: "left" | "right") => ({
+      x: direction === "right" ? -50 : 50,
+      opacity: 0,
+    }),
+  };
 
   return (
     <section className="work section section--light" id="projects">
@@ -187,49 +256,54 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
           <p>A collection of tools and interfaces that prioritize utility, clarity, and the long now.</p>
         </div>
 
-        {/* Navigation Categories Tab Bar Filter */}
         <div className="project-filters reveal reveal--up" data-reveal>
           {projectCategories.map((category, idx) => (
             <button
+              key={category}
               type="button"
               className={activeProjectCategory === category ? "project-filter is-active" : "project-filter"}
-              key={category}
-              onClick={() => setActiveProjectCategory(category)}
+              onClick={() => handleCategoryChange(category, idx)}
             >
-              <span>{`0${idx + 1}`}</span>
+              {String(idx + 1).padStart(2, "0")}
               {category}
-              <ExternalLink size={12} />
             </button>
           ))}
         </div>
 
-        {/* Strict Horizontal Viewport Layout Wrapper matching your CSS mapping */}
-        <div className="project-carousel-container">
-          {visibleProjects.length > 0 && centerProjectData ? (
-            <>
-              {/* Prev Project Slide (Left 1/3 viewport column) */}
-              {visibleProjects.length > 1 && prevProjectData ? (
-                renderProjectCard(prevProjectData, "prev")
+        <div className="project-carousel-container" style={{ overflow: "hidden" }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProjectCategory}
+              custom={tabDirection}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              style={{ display: "contents" }}
+            >
+              {visibleProjects.length > 0 && centerProjectData ? (
+                <>
+                  {visibleProjects.length > 1 && prevProjectData && renderProjectCard(prevProjectData, "prev")}
+                  {renderProjectCard(centerProjectData, "center")}
+                  {visibleProjects.length > 1 && nextProjectData && renderProjectCard(nextProjectData, "next")}
+                </>
               ) : (
-                <div className="project-carousel-item project-carousel-item--spacer" />
+                <div
+                  className="project-carousel-item project-carousel-item--spacer"
+                  style={{
+                    gridColumn: "2",
+                    visibility: "visible",
+                    textAlign: "center",
+                    padding: "4rem 0",
+                    color: "var(--muted-dark)",
+                  }}
+                >
+                  No projects available under this category.
+                </div>
               )}
-
-              {/* Active Project Slide (Center Column) */}
-              {renderProjectCard(centerProjectData, "center")}
-
-              {/* Next Project Slide (Right 1/3 viewport column) */}
-              {visibleProjects.length > 1 && nextProjectData ? (
-                renderProjectCard(nextProjectData, "next")
-              ) : (
-                <div className="project-carousel-item project-carousel-item--spacer" />
-              )}
-            </>
-          ) : (
-            // Fallback empty indicator placeholder styled elegantly within the container
-            <div className="project-carousel-item project-carousel-item--spacer" style={{ gridColumn: "2", visibility: "visible", textAlign: "center", padding: "4rem 0", color: "var(--muted-dark)" }}>
-              <p>No projects available under this category.</p>
-            </div>
-          )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@ export function Experience() {
             </div>
             <div className="timeline-entry__content">
               <span>Innovation Hub / Makueni</span>
-              <h3>Attachee</h3>
+              <h3>The Attachee</h3>
               <p className="font-bold text-lg text-zinc-50">Contributed to software development work inside the hub environment,
                 supporting practical builds, improving user-facing interfaces, and strengthening
                 development workflows through Git-based collaboration.</p>
@@ -61,6 +61,7 @@ export function Experience() {
                 <span>Web</span>
                 <span>Design</span>
                 <span>Learning</span>
+                <span>Emerging Tech</span>
               </div>
             </div>
           </article>

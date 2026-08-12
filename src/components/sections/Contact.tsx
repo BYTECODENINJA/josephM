@@ -25,8 +25,10 @@ export function Contact({ contact, updateContact, handleContactSubmit, contactSe
               a startup at the edge of possible, or a long-term technical partnership,
               I’m always open to the right question.</p>
             <div className="contact__direct">
-              <a href="mailto:josephmulwa@gmail.com">
+              <a href="mailto:josephmulwa9055@gmail.com">
                 <Mail size={16} /> josephmulwa8055@gmail.com</a>
+              <a href="mailto:josephmulwa808@outlook.com">
+                <Mail size={16} /> josephmulwa808@outlook.com</a>
               <a href="tel:+254708644969"><Phone size={16} /> +254 708 644 969</a>
             </div>
             <div className="contact__seal">

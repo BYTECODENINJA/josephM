@@ -270,7 +270,7 @@
 .philosophy__layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 8vw, 8rem); align-items: start; margin-top: 5rem; }
 .philosophy__intro h2 { margin: 16px 0 26px; font: 500 clamp(3.5rem, 7vw, 7.5rem)/.82 'Playfair Display', serif; letter-spacing: -.075em; }
 .philosophy__intro h2 em { color: var(--gold-light); font-style: italic; }
-.philosophy__intro > p { max-width: 330px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
+.philosophy__intro > p { max-width: 330px; margin: 0; color: var(--muted); font-size: 20px; line-height: 1.8; }
 .philosophy__quote { max-width: 290px; display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--line-dark); }
 .philosophy__quote svg { color: var(--gold); }
 .philosophy__quote p { margin: 0; color: var(--ivory); font: 17px/1.35 'Playfair Display', serif; }
@@ -280,7 +280,7 @@
 .interest-card:hover, .interest-card.is-active { color: var(--gold-light); border-color: rgba(201,168,76,.58); background: rgba(201,168,76,.07); transform: translateY(-4px); }
 .interest-card svg { color: var(--gold); }
 .interest-card strong { color: var(--ivory); font: 500 18px 'Playfair Display', serif; }
-.interest-card small { color: var(--muted); font: 12px 'DM Mono', monospace; }
+.interest-card small { color: var(--muted); font: 14px 'DM Mono', monospace; }
 .interest-card > svg:last-child { position: absolute; right: 16px; bottom: 17px; opacity: .6; }
 .interest-card__number { position: absolute; top: 17px; right: 18px; color: var(--muted); font: 9px 'DM Mono', monospace; }
 
@@ -363,7 +363,7 @@
 .contact__form-wrap { min-height: 500px; display: flex; align-items: center; }
 .contact-form { width: 100%; display: flex; flex-direction: column; gap: 25px; }
 .contact-form label, .hire-form label, .tag-picker { display: flex; flex-direction: column; gap: 9px; }
-.contact-form label > span, .hire-form label > span, .tag-picker > span { color: var(--gold); font: 9px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.contact-form label > span, .hire-form label > span, .tag-picker > span { color: var(--gold); font: 12px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
 .contact-form input, .contact-form textarea, .hire-form input, .hire-form textarea, .hire-form select { width: 100%; padding: 12px 0; color: var(--ivory); border: 0; border-bottom: 1px solid var(--line-dark); outline: 0; background: transparent; font-size: 14px; transition: border-color 200ms ease, box-shadow 200ms ease; resize: vertical; }
 .contact-form input:focus, .contact-form textarea:focus, .hire-form input:focus, .hire-form textarea:focus, .hire-form select:focus { border-color: var(--gold); box-shadow: 0 1px 0 var(--gold); }
 .contact-form input::placeholder, .contact-form textarea::placeholder, .hire-form input::placeholder, .hire-form textarea::placeholder { color: rgba(156,154,154,.6); }
