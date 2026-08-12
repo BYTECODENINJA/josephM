@@ -21,8 +21,8 @@ export function Footer({ scrollTo }: FooterProps) {
       <div className="site-footer__bottom">
         <span>© 2026 Joseph Mulwa</span>
         <div className="footer-links">
-          <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={16} /></a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a>
+          <a href="https://github.com/BYTECODENINJA" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={16} /></a>
+          <a href="https://linkedin.com/in/joseph-mulwa808" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><Twitter size={16} /></a>
           <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={16} /></a>
         </div>
