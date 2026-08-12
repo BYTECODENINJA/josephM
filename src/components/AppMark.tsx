@@ -1,5 +1,3 @@
-import React from "react";
-
 export function AppMark() {
   return (
     <span className="app-mark" aria-hidden="true">

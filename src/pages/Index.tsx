@@ -18,8 +18,8 @@ import { Arsenal } from "../components/sections/Arsenal";
 import { Experience } from "../components/sections/Experience";
 import { TechJourney } from "../components/sections/TechJourney";
 import { Philosophy } from "../components/sections/Philosophy";
-import { Work } from "../components/sections/Work";
 import { Contact } from "../components/sections/Contact";
+import { Work, type ProjectCategory } from "../components/sections/Work";
 
 const sectionLinks = [
   { label: "About", id: "about" },
@@ -33,7 +33,9 @@ const sectionLinks = [
 
 const constellationDotsCount = 16;
 
-type ProjectCategory = "Frontend" | "Backend" | "Fullstack";
+// ❌ REMOVED the local type that only allowed 3 categories
+// type ProjectCategory = "Frontend" | "Backend" | "Fullstack";
+
 type ContactForm = { name: string; email: string; subject: string; message: string };
 
 function useCinematicSignals() {
@@ -94,10 +96,9 @@ function useCinematicSignals() {
 }
 
 const downloadResume = () => {
-  // Use the imported PDF URL directly
   const link = document.createElement("a");
   link.href = resumePDF;
-  link.download = "JOSEPH MULWA.pdf"; // desired filename
+  link.download = "JOSEPH MULWA.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -120,16 +121,16 @@ const Index = () => {
   }, []);
 
   const constellation = useMemo(() => constellationDotsCount, []);
-  
+
   const scrollTo = (id: string) => {
     setMobileMenu(false);
     if (id === "top") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
   const updateContact = (key: keyof ContactForm, value: string) =>
     setContact((current) => ({
       ...current, [key]: value }));
@@ -211,7 +212,10 @@ const Index = () => {
       <Experience />
       <TechJourney />
       <Philosophy activeInterest={activeInterest} setActiveInterest={setActiveInterest} />
-      <Work activeProjectCategory={activeProjectCategory} setActiveProjectCategory={setActiveProjectCategory} />
+      <Work
+        activeProjectCategory={activeProjectCategory}
+        setActiveProjectCategory={(category) => setActiveProjectCategory(category)}
+      />
       <Contact contact={contact} updateContact={updateContact} handleContactSubmit={handleContactSubmit} contactSent={contactSent} />
 
       <Footer scrollTo={scrollTo} />

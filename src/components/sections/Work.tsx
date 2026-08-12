@@ -15,7 +15,7 @@ const REFERENCE_IMAGES = {
   memento: "/memento.jpeg",
 } as const;
 
-type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
+export type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
 const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
 
 const projects = [
