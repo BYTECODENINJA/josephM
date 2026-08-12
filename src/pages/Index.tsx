@@ -1,4 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
+import resumePDF from "../assets/JOSEPH MULWA.pdf";
 import {
   ArrowUpRight,
   Menu,
@@ -93,14 +94,13 @@ function useCinematicSignals() {
 }
 
 const downloadResume = () => {
-  const pdf = `%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n5 0 obj\n<< /Length 212 >>\nstream\nBT\n/F1 22 Tf\n72 700 Td\n(Joseph Mulwa) Tj\n/F1 12 Tf\n0 -28 Td\n(Full-stack developer | Architect of digital experiences) Tj\n0 -42 Td\n(React, TypeScript, Node.js, product systems, AI interfaces) Tj\n0 -24 Td\n(Nairobi, Kenya | josephmulwa8055@gmail.com) Tj\nET\nendstream\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF`;
-  const blob = new Blob([pdf], { type: "application/pdf" });
-  const url = URL.createObjectURL(blob);
+  // Use the imported PDF URL directly
   const link = document.createElement("a");
-  link.href = url;
-  link.download = "joseph-mulwa-resume.pdf";
+  link.href = resumePDF;
+  link.download = "JOSEPH MULWA.pdf"; // desired filename
+  document.body.appendChild(link);
   link.click();
-  URL.revokeObjectURL(url);
+  document.body.removeChild(link);
 };
 
 const Index = () => {
