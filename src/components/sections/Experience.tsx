@@ -34,29 +34,29 @@ export function Experience() {
             </div>
           </article>
           <article className="timeline-entry reveal reveal--right" data-reveal>
-            <div className="timeline-entry__year">2021—24</div>
+            <div className="timeline-entry__year">2023- Current</div>
             <div className="timeline-entry__marker"><span />
             </div>
             <div className="timeline-entry__content">
-              <span className="micro-label">Digital studio / Remote</span>
-              <h3>Full-stack developer</h3>
-              <p>Built platforms and product surfaces for teams working across commerce, culture, and emerging technology.</p>
+              <span className="micro-label">Into the Verse / The Aprentice</span>
+              <h3>Learning and Naturing</h3>
+              <p>Learning how systems work, why they work, what is needed for them to work. Learning the right tools for curation through bootcamps, Lectures, leetcode grinds and lots of tutorials.</p>
               <div className="timeline-entry__tags">
-                <span>React</span>
-                <span>Node.js</span>
-                <span>Cloud</span>
+                <span>System Design</span>
+                <span>Computer Science</span>
+                <span>Fullstack Development</span>
               </div>
             </div>
           </article>
           <article className="timeline-entry reveal reveal--left" data-reveal>
-            <div className="timeline-entry__year">2018—21</div>
+            <div className="timeline-entry__year">2023</div>
             <div className="timeline-entry__marker">
               <span />
             </div>
             <div className="timeline-entry__content">
               <span className="micro-label">The first commit</span>
               <h3>Curiosity became a discipline</h3>
-              <p>Started with interfaces, stayed for the systems underneath them. Never stopped asking why.</p>
+              <p>Started small, just simple html-css-javascript projects stayed for the systems underneath them. Never stopped asking why.Leveled up as time went by...Still moving and motivated</p>
               <div className="timeline-entry__tags">
                 <span>Web</span>
                 <span>Design</span>

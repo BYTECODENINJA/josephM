@@ -280,7 +280,7 @@
 .interest-card:hover, .interest-card.is-active { color: var(--gold-light); border-color: rgba(201,168,76,.58); background: rgba(201,168,76,.07); transform: translateY(-4px); }
 .interest-card svg { color: var(--gold); }
 .interest-card strong { color: var(--ivory); font: 500 18px 'Playfair Display', serif; }
-.interest-card small { color: var(--muted); font: 10px/1.45 'DM Mono', monospace; }
+.interest-card small { color: var(--muted); font: 12px 'DM Mono', monospace; }
 .interest-card > svg:last-child { position: absolute; right: 16px; bottom: 17px; opacity: .6; }
 .interest-card__number { position: absolute; top: 17px; right: 18px; color: var(--muted); font: 9px 'DM Mono', monospace; }
 

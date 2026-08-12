@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { SectionEyebrow } from "../SectionEyebrow";
 
@@ -10,10 +10,12 @@ const REFERENCE_IMAGES = {
   Fintech: "/Fintech.png",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
+  toolsDummy: "/tools-placeholder.jpg" // Added fallback image parameter for the Tools category
 } as const;
 
-type ProjectCategory = "Frontend" | "Backend" | "Fullstack";
-const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack"];
+// 1. Updated categories schema to include your requested "Tools" option
+type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
+const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
 
 const projects = [
   {
@@ -25,8 +27,8 @@ const projects = [
     image: REFERENCE_IMAGES.Gaming,
     accent: "blue",
     tags: ["React", "GSAP", "JavaScript", "Vite"],
-    github: "https://github.com/BYTECODENINJA/gamingwebsite",
-    livePreview: "https://gaminglandingpage.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "02",
@@ -37,8 +39,8 @@ const projects = [
     image: REFERENCE_IMAGES.Prologue,
     accent: "gold",
     tags: ["React", "Tailwind", "JavaScript"],
-    github: "https://github.com/BYTECODENINJA/K-Tech",
-    livePreview: "https://k-tech-six.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "03",
@@ -49,8 +51,8 @@ const projects = [
     image: REFERENCE_IMAGES.Portfilio,
     accent: "violet",
     tags: ["Nextjs", "Typescript", "React"],
-    github: "https://github.com/BYTECODENINJA/WindowsPortfolio",
-    livePreview: "https://windows-portfolio-ruby.vercel.app/",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "04",
@@ -61,8 +63,8 @@ const projects = [
     image: REFERENCE_IMAGES.goldenCode,
     accent: "gold",
     tags: ["Next.js", "Tailwind", "Stripe"],
-    github: "https://github.com/BYTECODENINJA/goldencode",
-    livePreview: "https://goldencode.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "05",
@@ -74,7 +76,7 @@ const projects = [
     accent: "gold",
     tags: ["TypeScript", "Convex", "React", "GSAP"],
     github: "",
-    livePreview: "https://www.rentosearch.co.ke",
+    livePreview: "https://rentosearch.co.ke",
   },
   {
     index: "06",
@@ -85,8 +87,8 @@ const projects = [
     image: REFERENCE_IMAGES.Fintech,
     accent: "violet",
     tags: ["Next.js", "MongoDb", "Gen AI", "TypeScript", "React"],
-    github: "https://github.com/BYTECODENINJA/moneymate",
-    livePreview: "https://moneymate-two.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "07",
@@ -97,7 +99,19 @@ const projects = [
     image: REFERENCE_IMAGES.memento,
     accent: "blue",
     tags: ["Node.js", "PostgreSQL", "Redis"],
-    github: "https://github.com/BYTECODENINJA/ledger-engine",
+    github: "https://github.com",
+    livePreview: "",
+  },
+  {
+    index: "08",
+    category: "Tools" as ProjectCategory,
+    focus: "Developer Experience",
+    title: "CLI\nToolkit",
+    description: "A collection of automated script tools optimizing localized builds.",
+    image: REFERENCE_IMAGES.toolsDummy,
+    accent: "blue",
+    tags: ["Rust", "Shell", "Docker"],
+    github: "https://github.com",
     livePreview: "",
   },
 ] as const;
@@ -108,18 +122,28 @@ interface WorkProps {
 }
 
 export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkProps) {
+  // Extract only the matching subset array dynamically
   const visibleProjects = projects.filter((project) => project.category === activeProjectCategory);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Automatically reset the internal slide view pointer back to 0 when swapping categories
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [activeProjectCategory]);
+
   const nextProject = () => {
+    if (visibleProjects.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % visibleProjects.length);
   };
 
   const prevProject = () => {
+    if (visibleProjects.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + visibleProjects.length) % visibleProjects.length);
   };
 
+  // Safe cyclic layout parsing to handle endless looping mechanics over smaller lengths
   const getProjectAt = (offset: number) => {
+    if (visibleProjects.length === 0) return null;
     const index = (currentIndex + offset + visibleProjects.length) % visibleProjects.length;
     return visibleProjects[index];
   };
@@ -127,7 +151,8 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
   const renderProjectCard = (project: typeof projects[number], position: "center" | "prev" | "next") => (
     <article
       className={`project-card project-card--${project.accent} reveal reveal--up is-visible project-carousel-item project-carousel-item--${position}`}
-      key={`${activeProjectCategory}-${project.index}`}
+      key={`${activeProjectCategory}-${project.index}-${position}`}
+      // Clicking left shifts previous into focus, clicking right brings the next item forward
       onClick={position === "prev" ? prevProject : position === "next" ? nextProject : undefined}
     >
       <div className="project-card__image"><img src={project.image} alt={project.title} /></div>
@@ -149,6 +174,10 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
     </article>
   );
 
+  const prevProjectData = getProjectAt(-1);
+  const centerProjectData = getProjectAt(0);
+  const nextProjectData = getProjectAt(1);
+
   return (
     <section className="work section section--light" id="projects">
       <div className="section-frame">
@@ -157,40 +186,49 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
           <h2>Proof of <em>concept.</em></h2>
           <p>A collection of tools and interfaces that prioritize utility, clarity, and the long now.</p>
         </div>
+
+        {/* Navigation Categories Tab Bar Filter */}
         <div className="project-filters reveal reveal--up" data-reveal>
-          {projectCategories.map((category) => (
+          {projectCategories.map((category, idx) => (
             <button
               type="button"
               className={activeProjectCategory === category ? "project-filter is-active" : "project-filter"}
               key={category}
-              onClick={() => {
-                setActiveProjectCategory(category);
-                setCurrentIndex(0);
-              }}
+              onClick={() => setActiveProjectCategory(category)}
             >
-              <span>{category === "Frontend" ? "01" : category === "Backend" ? "02" : "03"}</span>
+              <span>{`0${idx + 1}`}</span>
               {category}
               <ExternalLink size={12} />
             </button>
           ))}
         </div>
+
+        {/* Strict Horizontal Viewport Layout Wrapper matching your CSS mapping */}
         <div className="project-carousel-container">
-          {visibleProjects.length > 0 && (
+          {visibleProjects.length > 0 && centerProjectData ? (
             <>
-              {visibleProjects.length > 1 ? (
-                renderProjectCard(getProjectAt(-1), "prev")
+              {/* Prev Project Slide (Left 1/3 viewport column) */}
+              {visibleProjects.length > 1 && prevProjectData ? (
+                renderProjectCard(prevProjectData, "prev")
               ) : (
                 <div className="project-carousel-item project-carousel-item--spacer" />
               )}
-              
-              {renderProjectCard(visibleProjects[currentIndex], "center")}
-              
-              {visibleProjects.length > 1 ? (
-                renderProjectCard(getProjectAt(1), "next")
+
+              {/* Active Project Slide (Center Column) */}
+              {renderProjectCard(centerProjectData, "center")}
+
+              {/* Next Project Slide (Right 1/3 viewport column) */}
+              {visibleProjects.length > 1 && nextProjectData ? (
+                renderProjectCard(nextProjectData, "next")
               ) : (
                 <div className="project-carousel-item project-carousel-item--spacer" />
               )}
             </>
+          ) : (
+            // Fallback empty indicator placeholder styled elegantly within the container
+            <div className="project-carousel-item project-carousel-item--spacer" style={{ gridColumn: "2", visibility: "visible", textAlign: "center", padding: "4rem 0", color: "var(--muted-dark)" }}>
+              <p>No projects available under this category.</p>
+            </div>
           )}
         </div>
       </div>

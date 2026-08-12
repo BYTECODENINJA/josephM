@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Check, Send, ArrowUpRight } from "lucide-react";
 import { ModalShell } from "./ModalShell";
 
@@ -51,13 +51,96 @@ export function HireModal({ onClose }: { onClose: () => void }) {
           </div>
           <p className="hire-intro">{typeCopy[hireType].detail}</p>
           <form className="hire-form" onSubmit={handleSubmit}>
-            <div className="form-grid form-grid--two"><label><span>Name</span><input required value={form.name} onChange={(event) => update("name", event.target.value)} placeholder="Your name" /></label><label><span>Email</span><input required type="email" value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="you@company.com" /></label></div>
-            <div className="form-grid form-grid--two"><label><span>Contact</span><input value={form.contact} onChange={(event) => update("contact", event.target.value)} placeholder="Phone or preferred channel" /></label><label><span>Company</span><input value={form.company} onChange={(event) => update("company", event.target.value)} placeholder="Company name" /></label></div>
-            <div className="form-grid form-grid--two"><label><span>Your role</span><input value={form.role} onChange={(event) => update("role", event.target.value)} placeholder="Founder, product lead..." /></label><label><span>{typeCopy[hireType].field}</span><select required value={form.detail} onChange={(event) => update("detail", event.target.value)}><option value="">Select one</option>{hireType === "project" && <><option>Product build</option><option>AI experience</option><option>Platform / API</option></>}{hireType === "startup" && <><option>Idea</option><option>MVP</option><option>Growth</option><option>Scale</option></>}{hireType === "employment" && <><option>Technical lead</option><option>Senior engineer</option><option>Product engineer</option></>}</select></label></div>
-            <div className="form-grid form-grid--two"><label><span>Timeline</span><select value={form.timeline} onChange={(event) => update("timeline", event.target.value)}><option value="">Select a pace</option><option>2–4 weeks</option><option>1–3 months</option><option>Ongoing</option></select></label><label><span>Budget range</span><select value={form.detail === "" ? "" : undefined} onChange={() => undefined} disabled={hireType === "employment"}><option>{hireType === "employment" ? "Discussed together" : "KSh 250k — 500k+"}</option><option>KSh 100k — 250k</option><option>KSh 500k — 1M+</option></select></label></div>
-            <label><span>What are we making?</span><textarea required value={form.description} onChange={(event) => update("description", event.target.value)} placeholder="Give me the context, the tension, and what success looks like." rows={4} /></label>
-            <div className="tag-picker"><span>Required skills</span><div>{skillOptions.map((skill) => <button key={skill} type="button" className={selectedSkills.includes(skill) ? "tag is-selected" : "tag"} onClick={() => toggleSkill(skill)}>{selectedSkills.includes(skill) && <Check size={12} />}{skill}</button>)}</div></div>
-            <button className="button button--gold button--full" type="submit">Send the brief <Send size={16} /></button>
+            <div className="form-grid form-grid--two">
+              <label>
+                <span>Name</span>
+                <input required value={form.name} onChange={
+                  (event) =>
+                    update("name", event.target.value)} placeholder="Your name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input required type="email" value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="you@company.com" />
+              </label>
+            </div>
+            <div className="form-grid form-grid--two">
+              <label>
+                <span>Contact</span>
+                <input value={form.contact} onChange={(event) => update("contact", event.target.value)} placeholder="Phone or preferred channel" />
+              </label>
+              <label>
+                <span>Company</span>
+                <input value={form.company} onChange={(event) => update("company", event.target.value)} placeholder="Company name" />
+              </label>
+            </div>
+            <div className="form-grid form-grid--two">
+              <label>
+                <span>Your role</span>
+                <input value={form.role} onChange={(event) => update("role", event.target.value)} placeholder="Founder, product lead..." />
+              </label>
+              <label>
+                <span>{typeCopy[hireType].field}</span>
+                <select required value={form.detail} onChange={(event) => update("detail", event.target.value)}>
+                  <option value="">Select one</option>
+                  {hireType === "project" && <>
+                    <option>Product build</option>
+                    <option>AI experience</option>
+                    <option>Platform / API</option>
+                  </>}{hireType === "startup" &&
+                  <>
+                    <option>Idea</option>
+                  <option>MVP</option>
+                  <option>Growth</option>
+                  <option>Scale</option>
+                </>}{hireType === "employment" &&
+                  <>
+                  <option>Backend Developer</option>
+                  <option>Fullsatck Developer</option>
+                  <option>Product engineer</option>
+                    <option>Frontend Developer</option>
+                </>
+                  }
+                </select>
+              </label>
+            </div>
+            <div className="form-grid form-grid--two">
+              <label>
+                <span>Timeline</span>
+                <select value={form.timeline}
+                        onChange={(event) =>
+                          update("timeline", event.target.value)}>
+                  <option value="">Select a pace</option>
+                  <option>2–4 weeks</option>
+                  <option>1–3 months</option>
+                  <option>Contract</option>
+                </select>
+              </label>
+              <label>
+                <span>Budget range</span>
+                <select value={form.detail === "" ? "" : undefined} onChange={() => undefined} disabled={hireType === "employment"}>
+                  <option>{hireType === "employment" ? "Discussed together" : "KSh 250k — 500k+"}</option>
+                  <option>Ksh 30k — 40K</option>
+                  <option>Ksh 40k — 50K</option>
+                  <option>Ksh 50k — 60K</option>
+                  <option>Ksh 60k — 70K</option>
+                  <option>Ksh 70k — 80K</option>
+                  <option>Ksh 80k — 90K</option>
+                  <option>Ksh 90k — 100K</option>
+                  <option>KSh 100k — 250k</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              <span>What are we making?</span>
+              <textarea required value={form.description} onChange={(event) => update("description", event.target.value)} placeholder="Give me the context, the tension, and what success looks like." rows={4} />
+            </label>
+            <div className="tag-picker">
+              <span>Required skills</span>
+              <div>{skillOptions.map((skill) => <button key={skill} type="button" className={selectedSkills.includes(skill) ? "tag is-selected" : "tag"} onClick={() => toggleSkill(skill)}>{selectedSkills.includes(skill) && <Check size={12} />}{skill}</button>)}
+              </div>
+            </div>
+            <button className="button button--gold button--full" type="submit">Send the brief <Send size={16} />
+            </button>
           </form>
         </>
       )}
