@@ -3,10 +3,8 @@ import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "../SectionEyebrow";
 
-// --- ONLY ONE DECLARATION, EXPORTED ---
 export type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
 export const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
-// ---------------------------------------
 
 const REFERENCE_IMAGES = {
   Gaming: "/Gaming.png",
@@ -62,7 +60,7 @@ const projects = [
   {
     index: "04",
     category: "Backend" as ProjectCategory,
-    focus: "Event-Driven Architecture / Microservices ",
+    focus: "Event-Driven Architecture / Microservices",
     title: "Nexivent\nTickets",
     description: "A microservice-based event ticketing system.",
     image: REFERENCE_IMAGES.Nexivent,
@@ -183,7 +181,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
       <section className="work section section--light" id="projects" style={{ background: "#0a0a0f", color: "#ffffff" }}>
         <div className="section-frame">
           <SectionEyebrow number="06" children="SELECTED WORK" />
-          <div className="section-heading reveal reveal--up" style={{ color: "#ffffff", border: "none" }}>
+          <div className="section-heading" style={{ color: "#ffffff", border: "none", opacity: 1 }}>
             <h2>Proof of <em>concept.</em></h2>
             <p style={{ color: "rgba(255,255,255,0.6)" }}>
               A collection of tools and interfaces that prioritize utility, clarity, and the long now.
@@ -202,7 +200,8 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
       <div className="section-frame">
         <SectionEyebrow number="06" children="SELECTED WORK" />
 
-        <div className="section-heading reveal reveal--up" style={{ color: "#ffffff", border: "none" }}>
+        {/* FIXED: removed "reveal reveal--up" classes, added opacity:1 */}
+        <div className="section-heading" style={{ color: "#ffffff", border: "none", opacity: 1 }}>
           <h2>Proof of <em>concept.</em></h2>
           <p style={{ color: "rgba(255,255,255,0.6)" }}>
             A collection of tools and interfaces that prioritize utility, clarity, and the long now.
@@ -234,7 +233,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
         {/* Featured Project Card */}
         <div>
           <h4 style={{ font: "600 14px 'DM Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "16px" }}>
-            FEATURED PROJECT
+            FEATURED PROJECTS
           </h4>
           <motion.div
             key={activeProject.index}
