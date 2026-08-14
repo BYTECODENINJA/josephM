@@ -3,22 +3,24 @@ import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "../SectionEyebrow";
 
+// --- ONLY ONE DECLARATION, EXPORTED ---
+export type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
+export const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
+// ---------------------------------------
+
 const REFERENCE_IMAGES = {
   Gaming: "/Gaming.png",
   Prologue: "/K-Tech.png",
   Portfilio: "/WindowsPortfolio.png",
   RealEstate: "/RealEstate.png",
   Fintech: "/FIntech.png",
-  VibeCodingToolkit: "/AIToolKit.jpeg",
   PulseBand: "/PulseBand.png",
   Nexivent: "/Nexivent.png",
+  VibeCodingToolkit: "/AIToolKit.jpeg",
   CustomMcp: "/custommcp.jpeg",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
 } as const;
-
-type ProjectCategory = "Frontend" | "Backend" | "Fullstack" | "Tools";
-const projectCategories: readonly ProjectCategory[] = ["Frontend", "Backend", "Fullstack", "Tools"];
 
 const projects = [
   {
@@ -30,8 +32,8 @@ const projects = [
     image: REFERENCE_IMAGES.Gaming,
     accent: "blue",
     tags: ["React", "GSAP", "JavaScript", "Vite"],
-    github: "https://github.com/BYTECODENINJA/gamingwebsite",
-    livePreview: "https://gaminglandingpage.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "02",
@@ -42,8 +44,8 @@ const projects = [
     image: REFERENCE_IMAGES.Prologue,
     accent: "gold",
     tags: ["React", "Tailwind", "JavaScript"],
-    github: "https://github.com/BYTECODENINJA/K-Tech",
-    livePreview: "https://k-tech-six.vercel.app",
+    github: "https://github.com",
+    livePreview: "https://vercel.app",
   },
   {
     index: "03",
@@ -60,9 +62,9 @@ const projects = [
   {
     index: "04",
     category: "Backend" as ProjectCategory,
-    focus: "Event Driven Architecture / Micro-Services",
+    focus: "Event-Driven Architecture / Microservices ",
     title: "Nexivent\nTickets",
-    description: "An event ticketing system that uses Kafka for event streaming and PostgreSQL for data storage.",
+    description: "A microservice-based event ticketing system.",
     image: REFERENCE_IMAGES.Nexivent,
     accent: "gold",
     tags: ["Nestjs", "Kafka", "Postgres", "Redis", "TypeScript"],
@@ -73,7 +75,7 @@ const projects = [
     index: "05",
     category: "Fullstack" as ProjectCategory,
     focus: "RealEstate / APIs",
-    title: "Rento\nSearch",
+    title: "Property\nFinder",
     description: "A rentals searching website for kenyan property owners and seekers.",
     image: REFERENCE_IMAGES.RealEstate,
     accent: "gold",
@@ -95,15 +97,15 @@ const projects = [
   },
   {
     index: "07",
-    category: "Frontend" as ProjectCategory,
-    focus: "HTML BASICS / FLEXBOX / CSS",
-    title: "Pulse\nBand",
-    description: "A landing page for a medical smartband company.",
-    image: REFERENCE_IMAGES.PulseBand,
+    category: "Backend" as ProjectCategory,
+    focus: "Architecture / APIs",
+    title: "Ledger\nEngine",
+    description: "High-performance financial ledger system built for scale.",
+    image: REFERENCE_IMAGES.memento,
     accent: "blue",
-    tags: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/BYTECODENINJA/pulseband",
-    livePreview: "https://bytecodeninja.github.io/pulseband/",
+    tags: ["Node.js", "PostgreSQL", "Redis"],
+    github: "https://github.com",
+    livePreview: "",
   },
   {
     index: "08",
@@ -128,7 +130,7 @@ const projects = [
     tags: ["Prompt Eng", "Agentic", "Specs", "AI Code"],
     github: "https://github.com",
     livePreview: "",
-  }
+  },
 ] as const;
 
 interface WorkProps {
@@ -169,7 +171,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
     setTimeout(() => {
       const activeTile = document.querySelector(`[data-index="${visibleProjects[currentIndex]?.index}"]`);
       if (activeTile && scrollContainerRef.current) {
-        activeTile.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        activeTile.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
       }
     }, 50);
   };
@@ -217,7 +219,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
               style={{
                 color: activeProjectCategory === category ? "#0a0a0f" : "rgba(255,255,255,0.6)",
                 borderColor: "rgba(255,255,255,0.15)",
-                backgroundColor: activeProjectCategory === category ? "#c9a84c" : "transparent"
+                backgroundColor: activeProjectCategory === category ? "#c9a84c" : "transparent",
               }}
               onClick={() => setActiveProjectCategory(category)}
             >
@@ -229,7 +231,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
           ))}
         </div>
 
-        {/* Featured Project Card with integrated queue */}
+        {/* Featured Project Card */}
         <div>
           <h4 style={{ font: "600 14px 'DM Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "16px" }}>
             FEATURED PROJECT
@@ -241,15 +243,16 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
             transition={{ duration: 0.4 }}
             style={{
               position: "relative",
+              borderRadius: "16px",
               overflow: "hidden",
-              minHeight: "720px", // increased to exactly 640px
+              minHeight: "640px",
               background: "#000",
               boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
               display: "flex",
               flexDirection: "column",
             }}
           >
-            {/* Background image + darker overlay for readability */}
+            {/* Background image + overlay */}
             <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
               <img
                 src={activeProject.image}
@@ -260,12 +263,12 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "linear-gradient(135deg, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.5) 60%, rgba(10,10,15,0.9) 100%)"
+                  background: "linear-gradient(135deg, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.5) 60%, rgba(10,10,15,0.9) 100%)",
                 }}
               />
             </div>
 
-            {/* Content wrapper with backdrop blur for readability */}
+            {/* Content wrapper with backdrop blur */}
             <div
               style={{
                 position: "relative",
@@ -276,13 +279,14 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                 flexDirection: "column",
                 justifyContent: "space-between",
                 minHeight: "640px",
-                background: "rgba(10,10,15,0.25)", // semi-transparent background
-                backdropFilter: "blur(.5px)", // the blur effect
-                WebkitBackdropFilter: "blur(3px)",
+                background: "rgba(10,10,15,0.25)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                borderRadius: "16px",
               }}
             >
-              {/* Main details – moved up by reducing gap */}
-              <div style={{ maxWidth: "700px", marginBottom: "8px" }}> {/* smaller margin */}
+              {/* Main details – moved up */}
+              <div style={{ maxWidth: "700px", marginBottom: "8px" }}>
                 <span style={{ font: "11px 'DM Mono', monospace", color: "#c9a84c", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                   {activeProject.focus}
                 </span>
@@ -302,7 +306,7 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                         border: "1px solid rgba(255,255,255,0.15)",
                         borderRadius: "4px",
                         font: "11px 'DM Mono', monospace",
-                        color: "rgba(255,255,255,0.8)"
+                        color: "rgba(255,255,255,0.8)",
                       }}
                     >
                       {tag}
@@ -333,8 +337,8 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                 </div>
               </div>
 
-              {/* Queue inside the card – moved up closer to text */}
-              <div style={{ marginTop: "8px" }}> {/* reduced from 24px to 8px */}
+              {/* Queue inside the card */}
+              <div style={{ marginTop: "8px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
                   <span style={{ font: "11px 'DM Mono', monospace", color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                     PROJECT QUEUE ({visibleProjects.length})
