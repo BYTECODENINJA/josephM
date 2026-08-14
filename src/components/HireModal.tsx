@@ -14,6 +14,7 @@ type HireForm = {
   timeline: string;
   description: string;
   budget: string;
+  workMode: string;
   skills: string;
   hireType: string;
 };
@@ -28,15 +29,44 @@ const emptyHireForm: HireForm = {
   timeline: "",
   description: "",
   budget: "",
+  workMode: "",
   skills: "",
   hireType: "",
 };
+
+const budgetOptionsKsh = [
+  "Discussed together",
+  "Ksh 30k — 40K",
+  "Ksh 40k — 50K",
+  "Ksh 50k — 60K",
+  "Ksh 60k — 70K",
+  "Ksh 70k — 80K",
+  "Ksh 80k — 90K",
+  "Ksh 90k — 100K",
+  "KSh 100k — 250k",
+  "KSh 250k — 500k+",
+];
+
+const budgetOptionsUSD = [
+  "Discussed together",
+  "$300 — 400",
+  "$400 — 500",
+  "$500 — 600",
+  "$600 — 700",
+  "$700 — 800",
+  "$800 — 900",
+  "$900 — 1000",
+  "$1000 — 2000",
+  "$2000+",
+];
 
 export function HireModal({ onClose }: { onClose: () => void }) {
   const [state, handleSubmit] = useForm("xoeallyq");
   const [hireType, setHireType] = useState<HireType>("project");
   const [form, setForm] = useState<HireForm>(emptyHireForm);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [currency, setCurrency] = useState<"Ksh" | "USD">("Ksh");
+
   const skillOptions = [
     "React",
     "AI / ML",
@@ -74,15 +104,16 @@ export function HireModal({ onClose }: { onClose: () => void }) {
         : [...current, skill]
     );
 
-  // Keep skills in sync with form.skills when submitting
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-    // Update form.skills with comma-separated selected skills before submit
-    setForm((prev) => ({ ...prev, skills: selectedSkills.join(", ") }));
-    // Also store hireType
-    setForm((prev) => ({ ...prev, hireType }));
-    // Now submit
+    setForm((prev) => ({
+      ...prev,
+      skills: selectedSkills.join(", "),
+      hireType,
+    }));
     handleSubmit(event);
   };
+
+  const currentBudgetOptions = currency === "Ksh" ? budgetOptionsKsh : budgetOptionsUSD;
 
   return (
     <ModalShell title="Make a pact" eyebrow="Open brief / JM-2026" onClose={onClose}>
@@ -107,11 +138,7 @@ export function HireModal({ onClose }: { onClose: () => void }) {
         </div>
       ) : (
         <>
-          <div
-            className="hire-tabs"
-            role="tablist"
-            aria-label="Hiring route"
-          >
+          <div className="hire-tabs" role="tablist" aria-label="Hiring route">
             {(Object.keys(typeCopy) as HireType[]).map((type) => (
               <button
                 type="button"
@@ -129,6 +156,7 @@ export function HireModal({ onClose }: { onClose: () => void }) {
           <p className="hire-intro">{typeCopy[hireType].detail}</p>
 
           <form className="hire-form" onSubmit={handleFormSubmit}>
+            {/* Name & Email */}
             <div className="form-grid form-grid--two">
               <label>
                 <span>Name</span>
@@ -155,6 +183,7 @@ export function HireModal({ onClose }: { onClose: () => void }) {
               </label>
             </div>
 
+            {/* Contact & Company */}
             <div className="form-grid form-grid--two">
               <label>
                 <span>Contact</span>
@@ -178,6 +207,7 @@ export function HireModal({ onClose }: { onClose: () => void }) {
               </label>
             </div>
 
+            {/* Role & Type */}
             <div className="form-grid form-grid--two">
               <label>
                 <span>Your role</span>
@@ -226,6 +256,7 @@ export function HireModal({ onClose }: { onClose: () => void }) {
               </label>
             </div>
 
+            {/* Timeline & Budget (with currency toggles above) */}
             <div className="form-grid form-grid--two">
               <label>
                 <span>Timeline</span>
@@ -243,30 +274,77 @@ export function HireModal({ onClose }: { onClose: () => void }) {
               </label>
               <label>
                 <span>Budget range</span>
+                {/* Currency toggles */}
+                <div style={{ display: "flex", gap: "8px", marginBottom: "6px" }}>
+                  <button
+                    type="button"
+                    onClick={() => setCurrency("Ksh")}
+                    style={{
+                      padding: "2px 12px",
+                      background: currency === "Ksh" ? "#192B35" : "#E2BF4E",
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      borderRadius: "4px",
+                      color: currency === "Ksh" ? "#FFFDD0" : "#DBA12C",
+                      font: "11px 'DM Mono', monospace",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Ksh
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCurrency("USD")}
+                    style={{
+                      padding: "2px 12px",
+                      background: currency === "USD" ? "#192B35" : "#E2BF4E",
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      borderRadius: "4px",
+                      color: currency === "USD" ? "#FFFDD0" : "rgba(255,255,255,0.6)",
+                      font: "11px 'DM Mono', monospace",
+                      cursor: "pointer",
+                    }}
+                  >
+                    USD
+                  </button>
+                </div>
                 <select
+                  required
                   name="budget"
                   value={form.budget}
                   onChange={(event) => update("budget", event.target.value)}
-                  disabled={hireType === "employment"}
                 >
-                  <option value="">
-                    {hireType === "employment"
-                      ? "Discussed together"
-                      : "KSh 250k — 500k+"}
-                  </option>
-                  <option>Ksh 30k — 40K</option>
-                  <option>Ksh 40k — 50K</option>
-                  <option>Ksh 50k — 60K</option>
-                  <option>Ksh 60k — 70K</option>
-                  <option>Ksh 70k — 80K</option>
-                  <option>Ksh 80k — 90K</option>
-                  <option>Ksh 90k — 100K</option>
-                  <option>KSh 100k — 250k</option>
+                  <option value="">Select a budget</option>
+                  {currentBudgetOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
                 </select>
                 <ValidationError field="budget" errors={state.errors} />
               </label>
             </div>
 
+            {/* Work mode */}
+            <div className="form-grid form-grid--two">
+              <label>
+                <span>How should it work?</span>
+                <select
+                  required
+                  name="workMode"
+                  value={form.workMode}
+                  onChange={(event) => update("workMode", event.target.value)}
+                >
+                  <option value="">Select work mode</option>
+                  <option>Remote</option>
+                  <option>Hybrid</option>
+                  <option>On‑site</option>
+                </select>
+                <ValidationError field="workMode" errors={state.errors} />
+              </label>
+              <div style={{ visibility: "hidden" }} />
+            </div>
+
+            {/* Description */}
             <label>
               <span>What are we making?</span>
               <textarea
@@ -280,32 +358,35 @@ export function HireModal({ onClose }: { onClose: () => void }) {
               <ValidationError field="description" errors={state.errors} />
             </label>
 
-            <div className="tag-picker">
-              <span>Required skills</span>
-              <div>
-                {skillOptions.map((skill) => (
-                  <button
-                    key={skill}
-                    type="button"
-                    className={
-                      selectedSkills.includes(skill) ? "tag is-selected" : "tag"
-                    }
-                    onClick={() => toggleSkill(skill)}
-                  >
-                    {selectedSkills.includes(skill) && <Check size={12} />}
-                    {skill}
-                  </button>
-                ))}
+            {/* Skills + submit – with border above */}
+            <div style={{ marginTop: "24px", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "24px" }}>
+              <div className="tag-picker">
+                <span>Required skills</span>
+                <div>
+                  {skillOptions.map((skill) => (
+                    <button
+                      key={skill}
+                      type="button"
+                      className={
+                        selectedSkills.includes(skill) ? "tag is-selected" : "tag"
+                      }
+                      onClick={() => toggleSkill(skill)}
+                    >
+                      {selectedSkills.includes(skill) && <Check size={12} />}
+                      {skill}
+                    </button>
+                  ))}
+                </div>
               </div>
+              <button
+                className="button button--gold button--full"
+                type="submit"
+                disabled={state.submitting}
+                style={{ marginTop: "20px" }}
+              >
+                Send the brief <Send size={16} />
+              </button>
             </div>
-
-            <button
-              className="button button--gold button--full"
-              type="submit"
-              disabled={state.submitting}
-            >
-              Send the brief <Send size={16} />
-            </button>
           </form>
         </>
       )}
