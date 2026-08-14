@@ -243,9 +243,8 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
             transition={{ duration: 0.4 }}
             style={{
               position: "relative",
-              borderRadius: "16px",
               overflow: "hidden",
-              minHeight: "640px",
+              minHeight: "720px",
               background: "#000",
               boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
               display: "flex",
@@ -280,13 +279,12 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                 justifyContent: "space-between",
                 minHeight: "640px",
                 background: "rgba(10,10,15,0.25)",
-                backdropFilter: "blur(10px)",
+                backdropFilter: "blur(.7px)",
                 WebkitBackdropFilter: "blur(10px)",
-                borderRadius: "16px",
               }}
             >
               {/* Main details – moved up */}
-              <div style={{ maxWidth: "700px", marginBottom: "8px" }}>
+              <div style={{ maxWidth: "700px", marginBottom: "3px" }}>
                 <span style={{ font: "11px 'DM Mono', monospace", color: "#c9a84c", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                   {activeProject.focus}
                 </span>
@@ -381,7 +379,6 @@ export function Work({ activeProjectCategory, setActiveProjectCategory }: WorkPr
                         style={{
                           flex: "0 0 140px",
                           height: "100px",
-                          borderRadius: "10px",
                           overflow: "hidden",
                           cursor: "pointer",
                           border: isActive ? "2px solid #c9a84c" : "1px solid rgba(255,255,255,0.2)",
