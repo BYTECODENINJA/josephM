@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
 import { Mail, Phone, ArrowUpRight, Send, Check } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 import { SectionEyebrow } from "../SectionEyebrow";

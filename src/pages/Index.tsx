@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import resumePDF from "../assets/JOSEPH MULWA.pdf";
 import {
   ArrowUpRight,
@@ -32,11 +32,6 @@ const sectionLinks = [
 ];
 
 const constellationDotsCount = 16;
-
-// ❌ REMOVED the local type that only allowed 3 categories
-// type ProjectCategory = "Frontend" | "Backend" | "Fullstack";
-
-type ContactForm = { name: string; email: string; subject: string; message: string };
 
 function useCinematicSignals() {
   useEffect(() => {
@@ -110,8 +105,6 @@ const Index = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [hireOpen, setHireOpen] = useState(false);
-  const [contact, setContact] = useState<ContactForm>({ name: "", email: "", subject: "", message: "" });
-  const [contactSent, setContactSent] = useState(false);
   const [activeInterest, setActiveInterest] = useState(0);
   const [activeProjectCategory, setActiveProjectCategory] = useState<ProjectCategory>("Frontend");
 
@@ -130,12 +123,6 @@ const Index = () => {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  const updateContact = (key: keyof ContactForm, value: string) =>
-    setContact((current) => ({
-      ...current, [key]: value }));
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); setContactSent(true); };
 
   return (
     <main className="site-shell">
@@ -174,10 +161,11 @@ const Index = () => {
         </button>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {sectionLinks.map(
-            (link, index) => <
-              button key={link.id} type="button" onClick={() => scrollTo(link.id)}>
-              <span>0{index + 1}</span>{link.label}
-            </button>
+            (link, index) => (
+              <button key={link.id} type="button" onClick={() => scrollTo(link.id)}>
+                <span>0{index + 1}</span>{link.label}
+              </button>
+            )
           )}
         </nav>
         <button className="header-cta" type="button" onClick={() => setHireOpen(true)}>
@@ -216,7 +204,7 @@ const Index = () => {
         activeProjectCategory={activeProjectCategory}
         setActiveProjectCategory={(category) => setActiveProjectCategory(category)}
       />
-      <Contact contact={contact} updateContact={updateContact} handleContactSubmit={handleContactSubmit} contactSent={contactSent} />
+      <Contact />
 
       <Footer scrollTo={scrollTo} />
 
