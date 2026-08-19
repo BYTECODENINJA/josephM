@@ -18,6 +18,7 @@ const REFERENCE_IMAGES = {
   CustomMcp: "/custommcp.jpeg",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
+  EasyAuth: "/easy-Auth.png"
 } as const;
 
 const projects = [
@@ -129,6 +130,18 @@ const projects = [
     github: "https://github.com/BYTECODENINJA/connectkit",
     livePreview: "",
   },
+  {
+    index: "10",
+    category: "Backend" as ProjectCategory,
+    focus: "Role Based Auth/ Authorization",
+    title: "A role based\nauthentication system",
+    description: "A production-ready authentication and task management API built with NestJS, featuring JWT-based authentication with refresh tokens, email verification via Resend, role-based access control, and a full CRUD task system.",
+    image: REFERENCE_IMAGES.EasyAuth,
+    accent: "violet",
+    tags: ["Nestjs", "Postgres", "Redis", "TypeScript"],
+    github: "https://github.com/BYTECODENINJA/Easy-Auth",
+    livePreview: "",
+  }
 ] as const;
 
 interface WorkProps {
