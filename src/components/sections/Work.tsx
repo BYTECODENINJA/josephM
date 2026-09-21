@@ -18,7 +18,8 @@ const REFERENCE_IMAGES = {
   CustomMcp: "/custommcp.jpeg",
   goldenCode: "/goldencode.jpg",
   memento: "/memento.jpeg",
-  EasyAuth: "/easy-Auth.png"
+  EasyAuth: "/easy-Auth.png",
+  Carlture: "/carlture.png",
 } as const;
 
 const projects = [
@@ -141,6 +142,18 @@ const projects = [
     tags: ["Nestjs", "Postgres", "Redis", "TypeScript"],
     github: "https://github.com/BYTECODENINJA/Easy-Auth",
     livePreview: "",
+  },
+  {
+    index: "11",
+    category: "Frontend" as ProjectCategory,
+    focus: "Responsive Design / Frontend",
+    title: "Carlture",
+    description: "A vibrant portfolio project for practicing UI craft: design tokens, scroll-driven motion, custom cursors, interactive WebGL, and responsive editorial layouts. Pure front-end, no backend.",
+    image: REFERENCE_IMAGES.Carlture,
+    accent: "slate",
+    tags: ["Vite", "ThreeJs", "Framer Motion"],
+    github: "https://github.com/BYTECODENINJA/carlture",
+    livePreview: "https://carlture.vercel.app",
   }
 ] as const;
 
