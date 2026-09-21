@@ -24,7 +24,7 @@ const REFERENCE_IMAGES = {
 
 const projects = [
   {
-    index: "01",
+    index: "02",
     category: "Frontend" as ProjectCategory,
     focus: "AI / Product",
     title: "Forza\nHorizon",
@@ -36,7 +36,7 @@ const projects = [
     livePreview: "https://gaminglandingpage.vercel.app",
   },
   {
-    index: "02",
+    index: "03",
     category: "Frontend" as ProjectCategory,
     focus: "Visual Design",
     title: "K-Tech\nPrologue",
@@ -48,7 +48,7 @@ const projects = [
     livePreview: "https://k-tech-six.vercel.app",
   },
   {
-    index: "03",
+    index: "04",
     category: "Frontend" as ProjectCategory,
     focus: "Creative Coding",
     title: "Windows\nPortfolio",
@@ -60,7 +60,7 @@ const projects = [
     livePreview: "https://windows-portfolio-ruby.vercel.app",
   },
   {
-    index: "04",
+    index: "05",
     category: "Backend" as ProjectCategory,
     focus: "Event-Driven Architecture / Microservices",
     title: "Nexivent\nTickets",
@@ -72,7 +72,7 @@ const projects = [
     livePreview: "",
   },
   {
-    index: "05",
+    index: "06",
     category: "Fullstack" as ProjectCategory,
     focus: "RealEstate / APIs",
     title: "Property\nFinder",
@@ -84,7 +84,7 @@ const projects = [
     livePreview: "https://rentosearch.co.ke",
   },
   {
-    index: "06",
+    index: "07",
     category: "Fullstack" as ProjectCategory,
     focus: "Fintech / Banking",
     title: "Expense\nTracker",
@@ -96,7 +96,7 @@ const projects = [
     livePreview: "https://moneymate-two.vercel.app",
   },
   {
-    index: "07",
+    index: "08",
     category: "Frontend" as ProjectCategory,
     focus: "HTML Basics / Flex box",
     title: "Pulse\nBand",
@@ -108,7 +108,7 @@ const projects = [
     livePreview: "https://bytecodeninja.github.io/pulseband",
   },
   {
-    index: "08",
+    index: "09",
     category: "Tools" as ProjectCategory,
     focus: "Spec driven development",
     title: "Vibe Coding\nToolkit",
@@ -120,7 +120,7 @@ const projects = [
     livePreview: "",
   },
   {
-    index: "09",
+    index: "10",
     category: "Tools" as ProjectCategory,
     focus: "AI / MCPs",
     title: "Custom MCP\nTool",
@@ -132,7 +132,7 @@ const projects = [
     livePreview: "",
   },
   {
-    index: "10",
+    index: "11",
     category: "Backend" as ProjectCategory,
     focus: "Role Based Auth/ Authorization",
     title: "A role based\nauthentication system",
@@ -144,7 +144,7 @@ const projects = [
     livePreview: "",
   },
   {
-    index: "11",
+    index: "01",
     category: "Frontend" as ProjectCategory,
     focus: "Responsive Design / Frontend",
     title: "Carlture",
