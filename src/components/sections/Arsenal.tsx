@@ -1,5 +1,5 @@
 import  { type CSSProperties } from "react";
-import { MoveDownRight, Code2, Layers3, Database, ServerCog } from "lucide-react";
+import { MoveDownRight, Code2, Layers3, Database, ServerCog, Brain } from "lucide-react";
 import { SectionEyebrow } from "../SectionEyebrow";
 
 const skillGroups = [
@@ -14,7 +14,7 @@ const skillGroups = [
     label: "02 / Delivery",
     title: "DevOps & tools",
     icon: Layers3,
-    skills: ["Docker", "Git", "GitHub"],
+    skills: ["Docker", "Git", "GitHub", "Linux", "Bash"],
     accent: "gold",
   },
   {
@@ -30,6 +30,13 @@ const skillGroups = [
     icon: ServerCog,
     skills: ["React", "NestJS", "Next.js", "Express", "Node.js"],
     accent: "patina",
+  },
+  {
+    label: "05 / AI & LLMs",
+    title: "AI & LLMs",
+    icon: Brain,
+    skills: ["Claude", "RAG", "Agentic Development","N8N", "LLMs"],
+    accent: "purple",
   },
 ] as const;
 
@@ -62,7 +69,7 @@ export function Arsenal({ constellation }: ArsenalProps) {
                 {group.skills.map((skill) => <span key={skill}>{skill}</span>)}
               </div>
               <div className="skill-card__footer">
-                <span>Depth / {index === 0 ? "01" : index === 1 ? "02" : index === 2 ? "03" : "04"}</span>
+                <span>Depth / {String(index + 1).padStart(2, "0")}</span>
                 <MoveDownRight size={16} />
               </div>
             </article>

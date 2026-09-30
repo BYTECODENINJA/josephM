@@ -201,7 +201,7 @@
 
 /* Arsenal */
 .arsenal { background: radial-gradient(circle at 80% 12%, rgba(123,47,252,.1), transparent 30%), var(--ink); overflow: hidden; }
-.skill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.skill-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 .skill-card { position: relative; min-height: 330px; display: flex; flex-direction: column; padding: 23px; border: 1px solid var(--line-dark); background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)); overflow: hidden; transition: transform 350ms cubic-bezier(.2,.8,.2,1), border-color 350ms ease, background 350ms ease; }
 .skill-card::before { content: ''; position: absolute; width: 150px; height: 150px; top: 34px; right: -70px; border: 1px solid currentColor; border-radius: 50%; opacity: .16; transition: transform 500ms ease; }
 .skill-card::after { content: ''; position: absolute; width: 200px; height: 200px; top: 9px; right: -95px; border: 1px solid currentColor; border-radius: 50%; opacity: .1; }
@@ -211,6 +211,7 @@
 .skill-card--gold { color: var(--gold-light); }
 .skill-card--violet { color: var(--violet); }
 .skill-card--patina { color: var(--patina); }
+.skill-card--purple { color: #a855f7; }
 .skill-card__top, .skill-card__footer { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font: 10px 'DM Mono', monospace; letter-spacing: .04em; }
 .skill-card__top svg { color: currentColor; }
 .skill-card__icon { display: grid; width: 58px; height: 58px; place-items: center; margin-top: 42px; border: 1px solid currentColor; color: currentColor; background: rgba(255,255,255,.025); transform: rotate(45deg); }
