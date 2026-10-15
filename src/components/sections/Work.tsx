@@ -20,6 +20,7 @@ const REFERENCE_IMAGES = {
   memento: "/memento.jpeg",
   EasyAuth: "/easy-Auth.png",
   Carlture: "/carlture.png",
+  Finguard: "/Fintech.png",
 } as const;
 
 const projects = [
@@ -154,6 +155,18 @@ const projects = [
     tags: ["Vite", "ThreeJs", "Framer Motion"],
     github: "https://github.com/BYTECODENINJA/carlture",
     livePreview: "https://carlture.vercel.app",
+  },
+  {
+    index: "12",
+    category: "Frontend" as ProjectCategory,
+    focus: "Responsive Design / Frontend",
+    title: "Finguard",
+    description: "A responsive design project for practicing UI craft: design tokens, scroll-driven motion, custom cursors, interactive WebGL, and responsive editorial layouts. Pure front-end, no backend.",
+    image: REFERENCE_IMAGES.Finguard,
+    accent: "slate",
+    tags: ["Vite", "ThreeJs", "Framer Motion"],
+    github: "https://github.com/BYTECODENINJA/finguard",
+    livePreview: "https://finguard-wine.vercel.app",
   }
 ] as const;
 
